@@ -58,7 +58,9 @@ export class CellEditor extends ToolsView.ToolItem<
         pos = new Point(translation.tx, translation.ty)
         minWidth = Dom.getBBox(target).width
       } else {
-        if(!labelAddable) return
+        if (!labelAddable) {
+          return this;
+        }
         pos = graph.clientToLocal(Point.create(e.clientX, e.clientY))
         const view = this.cellView as EdgeView
         const d = view.path.closestPointLength(pos)
@@ -149,7 +151,7 @@ export namespace CellEditor {
       color: string
       backgroundColor: string
     }
-    labelAddable: boolean
+    labelAddable: true
     getText: (
       this: CellView,
       args: {
@@ -191,7 +193,6 @@ export namespace CellEditor {
       color: '#000',
       backgroundColor: '#fff',
     },
-    labelAddable: true,
     getText({ cell }) {
       return cell.attr('text/text')
     },
